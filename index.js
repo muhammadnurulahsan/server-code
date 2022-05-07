@@ -36,12 +36,16 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
+
+
 async function run() {
   try {
     await client.connect();
     const serviceCollection = client.db("geniusCar").collection("service");
     const orderCollection = client.db("geniusCar").collection("order");
     console.log("Connected to MongoDB");
+
+
 
     app.get("/services", async (req, res) => {
       const query = {};
@@ -50,6 +54,8 @@ async function run() {
       res.send(services);
     });
 
+
+
     app.get("/service/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -57,12 +63,16 @@ async function run() {
       res.send(service);
     });
 
+
+
     //POST
     app.post("/service", async (req, res) => {
       const newService = req.body;
       const result = await serviceCollection.insertOne(newService);
       res.send(result);
     });
+
+
 
     //service delete
     app.delete("/service/:id", async (req, res) => {
@@ -72,12 +82,16 @@ async function run() {
       res.send(result);
     });
 
+
+
     //Order Collection API
     app.post("/orders", async (req, res) => {
       const newOrder = req.body;
       const result = await orderCollection.insertOne(newOrder);
       res.send(result);
     });
+
+
 
     // Auth API
     app.post("/login", async (req, res) => {
