@@ -102,7 +102,6 @@ async function run() {
       }
     });
 
-
     //update a service by id
     app.put("/services/:id", async (req, res) => {
       const id = req.params.id;
@@ -126,16 +125,12 @@ async function run() {
   }
 }
 
-
-
 run().catch(console.dir);
 
 //Root Routes
 app.get("/", (req, res) => {
   res.send("Backend Server IS Running ");
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
